@@ -8,10 +8,11 @@ from groq import Groq
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
 
 
 def ask_question(question):
+    embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
     q = question.lower().strip()
 

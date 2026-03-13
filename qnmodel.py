@@ -7,12 +7,20 @@ from groq import Groq
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+print("Loading embedding model...")
+embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+index = faiss.read_index("vector.index")
+with open("chunks.pkl", "rb") as f:
+    data = pickle.load(f)
+chunks = data["chunks"]
+metadata = data["metadata"]
+total_pages = data["total_pages"]
 
 
 
 
 def ask_question(question):
-    embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
     q = question.lower().strip()
 
@@ -37,24 +45,8 @@ def ask_question(question):
     if not q:
         return "Please enter a valid question."
     
-    if not os.path.exists("vector.index") or not os.path.exists("chunks.pkl"):
-        print(" Error: Vector database not found!")
-        print(" Please run indexing file first.")
-        return None
 
     try:
-        
-        index = faiss.read_index("vector.index")
-
-       
-        with open("chunks.pkl", "rb") as f:
-            data = pickle.load(f)
-
-        chunks = data["chunks"]
-        metadata = data["metadata"]
-        total_pages = data["total_pages"]
-
-        
         query_vector = embedding_model.encode([question])
         query_vector = np.array(query_vector).astype("float32")
 

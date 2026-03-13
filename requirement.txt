@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+faiss-cpu
+numpy
+sentence-transformers
+groq
+PyPDF2
+sqlalchemy
+psycopg2-binary

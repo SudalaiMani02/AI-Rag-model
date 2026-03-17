@@ -26,9 +26,9 @@ def pdf_to_vectors(pdf_path):
         
         text = ''.join([p['text'] for p in page_texts])
     
-    print("Total pages: ", total_pages)
-    print("total text length: ", len(text))
-    print("Average characters per page: ", len(text)//total_pages)
+    #print("Total pages: ", total_pages)
+    #print("total text length: ", len(text))
+    #print("Average characters per page: ", len(text)//total_pages)
 
 
     chunks=[]
@@ -86,5 +86,4 @@ if __name__ =="__main__":
     
 
     
-    #text = pdf_to_vectors("Bevolution Audit SOP.pdf")
-#print(text[:1000])
+   

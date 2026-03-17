@@ -179,6 +179,8 @@ document.getElementById("loading").remove();
 
 chatbox.innerHTML += `<div class="message bot">${data.answer}</div>`;
 
+
+
 chatbox.scrollTop = chatbox.scrollHeight;
 
 }
